@@ -1,0 +1,7 @@
+[package]
+name = "lag_client"
+version = "0.1.0"
+authors = ["Marcus Ball <marcus@marcusball.me>"]
+
+[dependencies]
+lag = {path = "../Lag"}
