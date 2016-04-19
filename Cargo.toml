@@ -5,3 +5,4 @@ authors = ["Marcus Ball <marcus@marcusball.me>"]
 
 [dependencies]
 lag = {path = "../Lag"}
+term = "0.4.4"
