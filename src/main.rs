@@ -3,9 +3,17 @@ extern crate term;
 
 use lag_client::Client;
 use lag_client::frame::Message;
-use lag_client::state::{Position, ClientState};
+use lag_client::state::{Position, ClientState, GameState};
 //use std::net::SocketAddr;
 //use std::thread;
+
+struct GameGrid{
+    /// The dimensions of the game board, (width, height)
+    dimensions: (u32, u32),
+
+    /// Positions of all players
+    state: GameState
+}
 
 fn main() {
     let addr = "127.0.0.1:6969".parse().unwrap();
@@ -18,6 +26,14 @@ fn main() {
         // client.send_message(&god);
 
         let mut test_counter = 0;
+
+        println!("Waiting to authenticate with server...");
+        loop{
+            if client.is_authenticated(){
+                println!("Received server authorization!");
+                break;
+            }
+        }
 
         loop {
             let messages = client.pop_received_messages();
@@ -34,7 +50,7 @@ fn main() {
             }
 
 
-            if test_counter % 1000000 == 0{
+            if test_counter % 10000 == 0{
                 let mut position = client.get_position();
                 position.0 += 1;
                 position.1 += 2;
