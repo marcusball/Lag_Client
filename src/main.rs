@@ -140,7 +140,6 @@ fn main() {
 
         loop {
             let messages = client.pop_received_messages();
-            let mut t = term::stdout().unwrap();
 
             if let Some(messages) = messages{
                 for message in messages{
@@ -155,19 +154,10 @@ fn main() {
                 }
 
                 game_board.draw(client_id);
-
-                // for message in messages{
-                //     for _ in 1..3{
-                //         //t.carriage_return().unwrap();
-                //         t.cursor_up().unwrap();
-                //         t.delete_line().unwrap();
-                //     }
-                //     println!("Received message: {:?}", message);
-                // }
             }
 
 
-            if test_counter % 1000 == 0{
+            if test_counter % 1000000 == 0{
                 // let mut position = client.get_position();
                 // position.0 += 1;
                 // position.1 += 2;
